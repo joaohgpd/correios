@@ -18,10 +18,9 @@ public class SearchOnShared {
         SharedPreferences prefs = context.getSharedPreferences("preferencias_1", Context.MODE_PRIVATE);
         ArrayList<Busca> buscaPrefArray = new ArrayList<>();
         int i = 0;
-        Log.e("acessa_cep_origem_" + i, "valor " + prefs.getInt("cep_origem_" + i, 0));
+
         while (prefs.getInt("cep_origem_"+i, 0) != 0) {
 
-            Log.e("cep_origem_"+i,"valor "+prefs.getInt("cep_origem_" + i, 0));
             Busca buscaPref = new Busca();
             // Acesso às informações de acordo com o tipo.
             buscaPref.setCep_origem(prefs.getInt("cep_origem_"+i, 0));
@@ -67,4 +66,17 @@ public class SearchOnShared {
         ed.commit();
 
     }
+    public void deletarSharedPref(Context context) {
+        // Cria ou abre.
+        SharedPreferences prefs = context.getSharedPreferences("preferencias_1", Context.MODE_PRIVATE);
+        // Precisamos utilizar um editor para alterar Shared Preferences.
+        SharedPreferences.Editor ed = prefs.edit();
+
+       ed.clear();
+
+
+        ed.commit();
+
+    }
+
 }

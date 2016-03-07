@@ -1,249 +1,304 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/linear"
-    android:background="@drawable/mundo"
-    android:visibility="visible"
-    android:alpha="1">
-    <include layout="@layout/include_toolbar"
+    android:layout_height="match_parent">
+    <include
+        layout="@layout/include_toolbar"
         android:id="@+id/toolbar"/>
 
-
-    <FrameLayout
-        android:layout_marginTop="16dp"
+    <ScrollView
+        android:id="@+id/scroll"
+        tools:context=".MainActivity"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/frameLayout"
-        tools:context=".activity.MainActivity">
-
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_height="75dp"
-            android:id="@+id/imageView"
-            android:background="@drawable/correios"
-            android:alpha="1"
-            />
-
-
-        <ScrollView
-            android:layout_marginTop="107dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fillViewport="true"
-            android:scrollbars = "vertical"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:background="@color/gray"
-            android:elevation="5dp"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp">
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/linear2"
-            android:layout_gravity="center_horizontal|top"
-            android:visibility="visible"
-            android:alpha="1">
-
-            <TextView
-                android:background="@color/gray"
-                android:padding="10dp"
-                android:elevation="5dp"
-                android:textStyle="bold"
-                android:textColor="@color/colorPrimaryDark"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cep de Origem"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:id="@+id/cep_origem"/>
-
-            <EditText
-                android:textColor="@color/colorPrimaryDark"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:maxLength="8"
-                android:id="@+id/cep_origem_Edit"
-                android:layout_marginRight="16dp"
-                android:layout_toEndOf="@+id/cep_origem"
-                android:layout_alignLeft="@+id/cep_destino_Edit"
-                android:layout_alignStart="@+id/cep_destino_Edit" />
-
-            <TextView
-                android:layout_marginTop="16dp"
-                android:layout_below="@id/cep_origem"
-                android:background="@color/gray"
-                android:padding="10dp"
-                android:elevation="5dp"
-                android:textStyle="bold"
-                android:textColor="@color/colorPrimaryDark"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cep de Destino"
-                android:id="@+id/cep_destino"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                />
-
-            <EditText
-                android:layout_below="@id/cep_origem_Edit"
-                android:textColor="@color/colorPrimaryDark"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:inputType="number"
-                android:maxLength="8"
-                android:id="@+id/cep_destino_Edit"
-                android:layout_marginRight="16dp"
-                android:layout_toEndOf="@+id/peso"
-                android:layout_toRightOf="@+id/peso" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_below="@id/cep_destino"
-                android:background="@color/gray"
-                android:padding="10dp"
-                android:elevation="5dp"
-                android:textStyle="bold"
-                android:textColor="@color/colorPrimaryDark"
-                android:text="Peso (Kg 0.000)"
-                android:id="@+id/peso"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"/>
-
-            <EditText
-                android:layout_marginTop="12dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                android:maxLength="8"
-                android:layout_marginRight="16dp"
-                android:id="@+id/peso_Edit"
-                android:layout_below="@+id/cep_destino_Edit"
-                android:layout_alignLeft="@+id/cep_origem_Edit"
-                android:layout_alignStart="@+id/cep_origem_Edit" />
-
-            <TextView
-                android:layout_below="@+id/peso"
-                android:layout_marginLeft="16dp"
-                android:id="@+id/valor_encomenda"
-                android:layout_marginTop="16dp"
-                android:background="@color/gray"
-                android:padding="10dp"
-                android:elevation="5dp"
-                android:textStyle="bold"
-                android:textColor="@color/colorPrimaryDark"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Valor  (R$ 0.00)"
-
-                />
-
-            <EditText
-                android:layout_marginTop="12dp"
-                android:id="@+id/valor_encomenda_Edit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                android:maxLength="8"
-                android:layout_marginRight="16dp"
-                android:layout_below="@+id/peso_Edit"
-                android:layout_toEndOf="@+id/peso"
-                android:layout_alignLeft="@+id/peso_Edit"
-                android:layout_alignStart="@+id/peso_Edit" />
-
-        </RelativeLayout>
-
-
-        </ScrollView>
-
-    </FrameLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-                android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:text="Calcular Frete"
-        android:id="@+id/textView"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp" />
-
-    <RelativeLayout
-        android:id="@+id/calcula_frete"
-        android:layout_width="match_parent"
-        android:layout_weight="0"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="16dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/gray"
-        android:layout_gravity="center_horizontal"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars = "horizontal"
         android:elevation="5dp"
-        android:onClick="calcular_frete"
-        android:foreground="?attr/selectableItemBackground">
+        android:layout_marginTop="48dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+       >
 
-        <ImageView
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_width="60dp"
-            android:layout_height="20dp"
-            android:background="@drawable/pac"
-            android:id="@+id/imageView2"
-            android:layout_marginBottom="16dp" />
-
-        <TextView
-            android:textStyle="bold"
-            android:textColor="@color/colorPrimaryDark"
-            android:layout_width="75dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView3"
-            android:layout_alignBottom="@+id/imageView2"
-            android:layout_toRightOf="@+id/imageView2"
-            android:layout_toEndOf="@+id/imageView2"
-            android:layout_marginLeft="8dp" />
-
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="20dp"
-            android:background="@drawable/sedex"
-            android:id="@+id/imageView3"
-            android:layout_marginLeft="0dp"
-            android:layout_marginStart="30dp"
-            android:layout_alignBottom="@+id/textView3"
-            android:layout_toRightOf="@+id/textView3"
-            android:layout_toEndOf="@+id/textView3" />
-
-        <TextView
-            android:textStyle="bold"
-            android:textColor="@color/colorPrimaryDark"
-            android:layout_width="75dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView2"
-            android:layout_alignBottom="@+id/imageView3"
-            android:layout_toRightOf="@+id/imageView3"
-            android:layout_toEndOf="@+id/imageView3"
-            android:layout_marginLeft="8dp" />
+            android:orientation="vertical"
+           >
 
 
 
 
-    </RelativeLayout>
+            <FrameLayout
+                android:layout_marginTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/frameLayout"
+                tools:context=".activity.MainActivity">
 
 
-</LinearLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_height="75dp"
+                    android:id="@+id/imageView"
+                    android:background="@drawable/correios3"
+                    android:alpha="1"
+                    />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/informacao"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="107dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:id="@+id/info" />
+
+
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/relative"
+                    android:visibility="visible"
+                    android:alpha="1"
+                    android:layout_marginTop="135dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:elevation="10dp"
+                    android:layout_marginBottom="5dp">
+
+                    <TextView
+                        android:background="@color/gray"
+                        android:padding="10dp"
+                        android:elevation="10dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cep de Origem"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:id="@+id/cep_origem"
+                        android:layout_marginTop="16dp" />
+
+                    <EditText
+                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:maxLength="8"
+                        android:id="@+id/cep_origem_Edit"
+                        android:layout_marginRight="16dp"
+                        android:layout_toRightOf="@+id/cep_origem"
+                        android:layout_alignLeft="@+id/cep_destino_Edit"
+                        android:layout_alignStart="@+id/cep_destino_Edit"
+                        android:layout_marginTop="16dp"
+                        android:elevation="5dp" />
+
+                    <TextView
+                        android:layout_marginTop="16dp"
+                        android:layout_below="@id/cep_origem"
+                        android:background="@color/gray"
+                        android:padding="10dp"
+                        android:elevation="10dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cep de Destino"
+                        android:id="@+id/cep_destino"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        />
+
+                    <EditText
+                        android:layout_below="@id/cep_origem_Edit"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:inputType="number"
+                        android:maxLength="8"
+                        android:id="@+id/cep_destino_Edit"
+                        android:layout_marginRight="16dp"
+                        android:layout_toEndOf="@+id/peso"
+                        android:layout_toRightOf="@+id/peso"
+                        android:elevation="5dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_below="@id/cep_destino"
+                        android:background="@color/gray"
+                        android:padding="10dp"
+                        android:elevation="10dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="Peso (Kg 0.000)"
+                        android:id="@+id/peso"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"/>
+
+                    <EditText
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:maxLength="8"
+                        android:layout_marginRight="16dp"
+                        android:id="@+id/peso_Edit"
+                        android:layout_below="@+id/cep_destino_Edit"
+                        android:layout_alignLeft="@+id/cep_origem_Edit"
+                        android:layout_alignStart="@+id/cep_origem_Edit"
+                        android:elevation="5dp" />
+
+                    <TextView
+                        android:layout_below="@+id/peso"
+                        android:layout_marginLeft="16dp"
+                        android:id="@+id/valor_encomenda"
+                        android:layout_marginTop="16dp"
+                        android:background="@color/gray"
+                        android:padding="10dp"
+                        android:elevation="10dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Valor  (R$ 0.00)"
+
+                        android:layout_marginBottom="12dp" />
+
+                    <EditText
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:id="@+id/valor_encomenda_Edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:maxLength="8"
+                        android:layout_marginRight="16dp"
+                        android:layout_below="@+id/peso_Edit"
+                        android:layout_toRightOf="@+id/peso"
+                        android:layout_alignLeft="@+id/peso_Edit"
+                        android:layout_alignStart="@+id/peso_Edit"
+                        android:layout_marginBottom="12dp"
+                        android:elevation="5dp" />
+
+                </RelativeLayout>
+
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="Calcular Frete"
+                android:id="@+id/calcular_frete"
+                android:layout_marginTop="27dp"
+                android:layout_marginBottom="8dp" />
+
+            <RelativeLayout
+                android:id="@+id/calcula_frete_layout"
+                android:layout_width="match_parent"
+                android:layout_weight="0"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/gray"
+                android:layout_gravity="center_horizontal"
+                android:elevation="5dp"
+                android:onClick="calcular_frete"
+                android:foreground="?attr/selectableItemBackground">
+
+                <ImageView
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_width="70dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/pac"
+                    android:id="@+id/imagePac"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/valorSedex"
+                    android:layout_alignBottom="@+id/imageSedex"
+                    android:layout_toRightOf="@+id/imageSedex"
+                    android:layout_toEndOf="@+id/imageSedex"
+                    android:layout_marginLeft="8dp"
+                    android:text="R$: ..." />
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/sedex2"
+                    android:id="@+id/imageSedex"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_alignBottom="@+id/valorPac"
+                    android:layout_toRightOf="@+id/valorPac"
+                    android:layout_toEndOf="@+id/valorPac" />
+
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/valorPac"
+                    android:layout_alignBottom="@+id/imagePac"
+                    android:layout_toRightOf="@+id/imagePac"
+                    android:layout_toEndOf="@+id/imagePac"
+                    android:layout_marginLeft="8dp"
+                    android:text="R$ ..." />
+
+                <TextView
+                    android:textStyle="italic"
+                    android:textSize="10sp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Prazo de 3 a 7 dias"
+                    android:id="@+id/pac_desc"
+                    android:layout_below="@+id/valorSedex"
+                    android:layout_alignLeft="@+id/imagePac"
+                    android:layout_alignStart="@+id/imagePac"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:textStyle="italic"
+                    android:textSize="10sp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Prazo de 1 a 3 dias"
+                    android:id="@+id/sedex_desc"
+                    android:layout_below="@+id/imageSedex"
+                    android:layout_alignLeft="@+id/imageSedex"
+                    android:layout_alignStart="@+id/imageSedex"
+                    android:layout_marginBottom="8dp" />
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

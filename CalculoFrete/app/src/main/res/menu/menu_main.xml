@@ -1,13 +1,24 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto" >
-<item
-    android:id="@+id/action_about"
-    android:title="@string/action_about"
-    android:orderInCategory="100"
-    app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_about_pac"
+        android:title="@string/Pac"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_about_sedex"
+        android:title="@string/Sedex"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_about"
+        android:title="@string/Sobre"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
     <item
         android:id="@+id/action_lista"
-        android:title="Lista"
+        android:title="@string/menu_historico"
         android:orderInCategory="100"
         app:showAsAction="always" />
 </menu>

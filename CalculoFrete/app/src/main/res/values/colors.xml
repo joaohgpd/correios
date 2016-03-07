@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#f9c805</color>
     <color name="colorPrimaryDark">#014974</color>
-    <color name="colorPrimaryDarkopac">#22014974</color>
+    <color name="grayOpac">#EEeeeeee</color>
     <color name="colorAccent">#ffd800</color>
     <!-- Outras cores -->
     <color name="transparent">#0000</color>

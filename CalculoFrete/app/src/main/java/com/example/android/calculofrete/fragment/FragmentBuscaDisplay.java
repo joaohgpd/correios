@@ -1,16 +1,15 @@
 package com.example.android.calculofrete.fragment;
 
 
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -18,12 +17,9 @@ import android.widget.Toast;
 import com.example.android.calculofrete.R;
 import com.example.android.calculofrete.adapter.BuscaAdapter;
 import com.example.android.calculofrete.domain.Busca;
-import com.example.android.calculofrete.domain.BuscaService;
-import com.example.android.calculofrete.process.Search;
 import com.example.android.calculofrete.process.SearchOnShared;
 
 
-import java.io.IOException;
 import java.util.List;
 
 
@@ -32,6 +28,7 @@ public class FragmentBuscaDisplay extends android.app.Fragment {
     private List<Busca> buscas;
     private LinearLayoutManager mLayoutManager;
     private String url = null;
+
 
 
     @Override
@@ -57,6 +54,9 @@ public class FragmentBuscaDisplay extends android.app.Fragment {
         super.onActivityCreated(savedInstanceState);
         SearchOnShared search = new SearchOnShared();
         buscas = search.acessaSharedPreferences(getActivity());
+        if(buscas.isEmpty()){
+            Toast.makeText(getActivity(), "Nenhum Historico Registrado", Toast.LENGTH_LONG).show();
+        }else
         recyclerView.setAdapter(new BuscaAdapter(getActivity(), buscas, onClickBusca()));
     }
 
@@ -67,11 +67,14 @@ public class FragmentBuscaDisplay extends android.app.Fragment {
             public void onClickBusca(View view, int idx) {
 
                 Busca busca = buscas.get(idx);
-                Toast.makeText(getActivity(), "Usuario: " + busca.getCep_dest(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "Frete: " + busca.getCep_dest(), Toast.LENGTH_SHORT).show();
                 // Intent intent = new Intent(getActivity(), BuscaDescActivity.class);
                 // intent.putExtra("URL", busca.getCep_dest());
                 //startActivity(intent);
             }
         };
     }
+
+
+
 }

@@ -1,19 +1,13 @@
 package com.example.android.calculofrete.activity;
 
 import android.animation.Animator;
-import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Point;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.AsyncTask;
-import android.support.v4.view.ViewPropertyAnimatorListener;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -24,16 +18,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.AnimationSet;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.SeekBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,10 +32,8 @@ import com.example.android.calculofrete.process.Search;
 import com.example.android.calculofrete.process.SearchOnShared;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private static final String URL = "http://developers.agenciaideias.com.br/correios/frete/json/";
@@ -57,11 +43,15 @@ public class MainActivity extends AppCompatActivity {
     private TextView cep_dest;
     private TextView peso;
     private TextView valor;
+    private TextView info;
+    private TextView calcularFrete;
     private EditText cep_origem_Edit;
     private EditText cep_dest_Edit;
     private EditText peso_Edit;
     private EditText valor_Edit;
-    private RelativeLayout calcula_frete;
+    private RelativeLayout calcula_frete_Layout;
+    private AnimationDrawable animation;
+
 
 
 
@@ -69,10 +59,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        overridePendingTransition(R.anim.pai_entrando, R.anim.filho_saindo);
         setUpToolbar();
         float scale = getResources().getDisplayMetrics().density;
-        final RelativeLayout linear2 = (RelativeLayout) findViewById(R.id.linear2);
-        final LinearLayout linear = (LinearLayout) findViewById(R.id.linear);
+        final RelativeLayout relative = (RelativeLayout) findViewById(R.id.relative);
+
         ImageView image = (ImageView) findViewById(R.id.imageView);
         Display display = ((WindowManager) getSystemService(this.WINDOW_SERVICE))  .getDefaultDisplay();
         Point point = new Point();
@@ -90,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
         peso.setAlpha(0f);
         valor = (TextView) findViewById(R.id.valor_encomenda);
         valor.setAlpha(0f);
-        calcula_frete = (RelativeLayout) findViewById(R.id.calcula_frete);
-        calcula_frete.setAlpha(0f);
+        calcula_frete_Layout = (RelativeLayout) findViewById(R.id.calcula_frete_layout);
+        calcula_frete_Layout.setAlpha(0f);
         cep_origem_Edit = (EditText) findViewById(R.id.cep_origem_Edit);
         cep_origem_Edit.setAlpha(0f);
         cep_dest_Edit = (EditText) findViewById(R.id.cep_destino_Edit);
@@ -100,8 +91,10 @@ public class MainActivity extends AppCompatActivity {
         peso_Edit.setAlpha(0f);
         valor_Edit = (EditText) findViewById(R.id.valor_encomenda_Edit);
         valor_Edit.setAlpha(0f);
-
-
+        calcularFrete = (TextView) findViewById(R.id.calcular_frete);
+        calcularFrete.setAlpha(0f);
+        info = (TextView) findViewById(R.id.info);
+        info.setAlpha(0f);
         ObjectAnimator sobe = ObjectAnimator.ofFloat(image, "y", displaysize/2, 0f);
         ObjectAnimator desce = ObjectAnimator.ofFloat(image, "y", 0f, displaysize/2f);
         ObjectAnimator aparece = ObjectAnimator.ofFloat(image,"alpha",0f,1f);
@@ -115,6 +108,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animator animation) {
+                info.animate().alpha(1f).setDuration(10).setInterpolator(new AccelerateDecelerateInterpolator());
+                relative.setBackgroundColor(getResources().getColor(R.color.gray));
 
             }
 
@@ -132,29 +127,56 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+        animation = new AnimationDrawable();
+        animation.addFrame(getResources().getDrawable(R.drawable.mundo_1), 70);
+        animation.addFrame(getResources().getDrawable(R.drawable.mundo_2), 70);
+        animation.addFrame(getResources().getDrawable(R.drawable.mundo_3), 70);
+        animation.addFrame(getResources().getDrawable(R.drawable.mundo_4), 70);
+        animation.addFrame(getResources().getDrawable(R.drawable.mundo_5), 70);
+        animation.addFrame(getResources().getDrawable(R.drawable.mundo_6), 70);
+        animation.addFrame(getResources().getDrawable(R.drawable.mundo_7), 70);
+        animation.addFrame(getResources().getDrawable(R.drawable.mundo_8), 70);
+        animation.addFrame(getResources().getDrawable(R.drawable.mundo_9), 70);
+        animation.addFrame(getResources().getDrawable(R.drawable.mundo_10),70);
+        animation.addFrame(getResources().getDrawable(R.drawable.mundo_11),70);
 
+
+
+        animation.setOneShot(true);
+        final ScrollView scrollView = (ScrollView) findViewById(R.id.scroll);
+
+        //
+        scrollView.setBackgroundDrawable(animation);
+
+        scrollView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                animation.start();
+            }
+        }, 10);
         animSet.play(desce).before(aparece);
         animSet.play(sobe).after(aparece);
         animSet.setInterpolator(new AccelerateDecelerateInterpolator());
         animSet.addListener(listener);
         sobe.setDuration(1000);
         desce.setDuration(20);
-        aparece.setDuration(1500);
+        aparece.setDuration(500);
+        aparece.setStartDelay(500);
         animSet.start();
 
 
 
         //image.setAlpha(1f);
-        cep_origem.animate().x(16f*scale).alpha(1).setDuration(300).setStartDelay(3100);
-        cep_origem_Edit.animate().x(136* scale).alpha(1).setDuration(300).setStartDelay(3200);
-        cep_dest.animate().x(16f*scale).alpha(1).setDuration(300).setStartDelay(3300);
-        cep_dest_Edit.animate().x(136f*scale).alpha(1).setDuration(300).setStartDelay(3400);
-        peso.animate().x(16f*scale).alpha(1).setDuration(300).setStartDelay(3500);
-        peso_Edit.animate().x(136f*scale).alpha(1).setDuration(300).setStartDelay(3600);
-        valor.animate().x(16f*scale).alpha(1).setDuration(300).setStartDelay(3700);
-        valor_Edit.animate().x(136f * scale).alpha(1).setDuration(300).setStartDelay(3800);
-        calcula_frete.animate().alpha(1f).setDuration(500).setStartDelay(3900).setInterpolator(new AccelerateDecelerateInterpolator());
-
+        cep_origem.animate().x(16f*scale).alpha(1).setDuration(300).setStartDelay(2300);
+        cep_origem_Edit.animate().x(136* scale).alpha(1).setDuration(300).setStartDelay(2400);
+        cep_dest.animate().x(16f*scale).alpha(1).setDuration(300).setStartDelay(2500);
+        cep_dest_Edit.animate().x(136f*scale).alpha(1).setDuration(300).setStartDelay(2600);
+        peso.animate().x(16f*scale).alpha(1).setDuration(300).setStartDelay(2700);
+        peso_Edit.animate().x(136f*scale).alpha(1).setDuration(300).setStartDelay(2800);
+        valor.animate().x(16f*scale).alpha(1).setDuration(300).setStartDelay(2900);
+        valor_Edit.animate().x(136f * scale).alpha(1).setDuration(300).setStartDelay(3000);
+        calcula_frete_Layout.animate().alpha(1f).setDuration(500).setStartDelay(3100).setInterpolator(new AccelerateDecelerateInterpolator());
+        calcularFrete.animate().alpha(1f).setDuration(500).setStartDelay(3250).setInterpolator(new AccelerateDecelerateInterpolator());
 
     }
 
@@ -179,6 +201,14 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.action_about) {
             Toast.makeText(getApplication(), "Version 1.0", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        if (id == R.id.action_about_pac) {
+            Toast.makeText(getApplication(), "Pac\nA encomenda econonica dos correios\nPrazo de entrega de 3 a 7 dias", Toast.LENGTH_LONG).show();
+            return true;
+        }
+        if (id == R.id.action_about_sedex) {
+            Toast.makeText(getApplication(), "Sedex\nMandou, chegou\nPrazo de entrega de 1 a 3 dias", Toast.LENGTH_LONG).show();
             return true;
         }
         if(id == R.id.action_lista){
@@ -214,18 +244,27 @@ public class MainActivity extends AppCompatActivity {
             if(newPeso.length()!=3){
                 error=error+"\nPeso incorreto (1.5 -> 1.500)";
             }else{
-                newUrl=newUrl+peso_Edit.getText().toString()+"/";
+                if((Float.parseFloat(peso_Edit.getText().toString())>30)){
+                    error=error+"Peso limite ultrapassado. (Peso Max: 30kg)";
+
+                }else
+                    newUrl=newUrl+peso_Edit.getText().toString()+"/";
             }
         }
         //verifica entrada Valor encomenda
         int pos2 = valor_Edit.getText().toString().indexOf(".");
-        if(pos==-1){
+        if(pos2==-1){
             error=error+"\nValor da encomenda Incorreto";
         }else{
-            String novoValor = valor_Edit.getText().toString().substring(pos+1);
+            String novoValor = valor_Edit.getText().toString().substring(pos2+1);
             if(novoValor.length()!=2){
-                error=error+"\nValor da encomenda Incorreto \n(Ex: 100 reais -> 100.00)";
+                error=error+"\nValor da encomenda Incorreto \n(Ex: 100 reais -> 100.00)\n"+novoValor;
             }else{
+                if(Float.parseFloat(valor_Edit.getText().toString())>10000f){
+                    valor_Edit.setText("10000.00");
+                    newUrl=newUrl+""+10000.00;
+                    Toast.makeText(getApplicationContext(),"O valor da encomenda foi modificado para R$: 10.000,00 (Valor Maximo)",Toast.LENGTH_SHORT).show();
+                }else
                 newUrl=newUrl+valor_Edit.getText().toString();
             }
         }
@@ -251,7 +290,7 @@ public class MainActivity extends AppCompatActivity {
         ProgressDialog dialog;
         @Override protected void onPreExecute() {
             super.onPreExecute();
-            dialog = ProgressDialog.show(MainActivity.this, "Espere", "Calculando Frete...");
+            dialog = ProgressDialog.show(MainActivity.this, "Aguarde", "Calculando Frete...");
         }
 
         @Override
@@ -285,8 +324,8 @@ public class MainActivity extends AppCompatActivity {
                         SearchOnShared search = new SearchOnShared();
                         buscaPrefArray = search.acessaSharedPreferences(getApplication());
                         search.salvarSharedPref(buscaPrefArray, busca, getApplication());
-                        TextView pac = (TextView) findViewById(R.id.textView2);
-                        TextView sedex = (TextView) findViewById(R.id.textView3);
+                        TextView pac = (TextView) findViewById(R.id.valorPac);
+                        TextView sedex = (TextView) findViewById(R.id.valorSedex);
                         pac.setText("R$: " + formatter.format(busca.getPac()));
                         sedex.setText("R$: " + formatter.format(busca.getSedex()));
 

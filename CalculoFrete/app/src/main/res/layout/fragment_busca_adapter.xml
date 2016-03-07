@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="6dp"
     android:clickable="true"
-    card_view:cardBackgroundColor="@color/gray"
+    card_view:cardBackgroundColor="@color/grayOpac"
     card_view:cardCornerRadius="2dp"
     card_view:cardElevation="6dp"
     android:foreground="?attr/selectableItemBackground">
@@ -20,102 +20,115 @@
         android:orientation="horizontal">
 
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_weight="5"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="5dp"
-            android:gravity="center_vertical"
             android:orientation="vertical"
             >
-            <!-- Nome usuario -->
-            <TextView
-                android:id="@+id/text"
+              <TextView
+                android:id="@+id/cep_origem"
                 android:layout_width="match_parent"
-                android:layout_margin="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:layout_height="wrap_content"
-                android:textColor="@color/cardview_dark_background"
+                android:textColor="@color/colorPrimaryDark"
                 android:textStyle="normal"
                 android:textSize="12dp"
                 />
 
             <TextView
-                android:id="@+id/text3"
-                android:layout_width="match_parent"
+                android:layout_below="@id/cep_origem"
+                android:id="@+id/peso"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:textStyle="normal"
                 android:textSize="12dp"
-                android:textColor="@color/cardview_dark_background"
                 android:layout_marginLeft="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginRight="5dp" />
+                android:textColor="@color/colorPrimaryDark"
+                 />
 
             <ImageView
-                android:id="@+id/img2"
-                android:layout_width="100dp"
-                android:layout_height="25dp"
-                android:layout_marginTop="5dp"
+                android:layout_below="@id/peso"
+                android:id="@+id/imgPac"
+                android:layout_width="60dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp"
                 android:layout_gravity="center_horizontal"
                />
 
             <TextView
-            android:id="@+id/text5"
+                android:id="@+id/pac"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:textStyle="italic"
             android:textSize="12dp"
-            android:textColor="@color/cardview_dark_background"
-            android:layout_marginTop="5dp"
+            android:textColor="@color/colorPrimaryDark"
             android:layout_gravity="center_horizontal"
-           />
-        </LinearLayout>
-        <LinearLayout
+            android:layout_toRightOf="@id/imgPac"
+            android:layout_below="@id/peso"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="12dp" />
+        </RelativeLayout>
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_weight="5"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:layout_margin="5dp"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            >
-
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp">
             <TextView
-                android:id="@+id/text2"
+                android:id="@+id/cep_dest"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="normal"
-                android:layout_margin="5dp"
-                android:textSize="12dp"
-                android:textColor="@color/cardview_dark_background"
-               />
-
-            <TextView
-                android:id="@+id/text4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="normal"
-                android:textSize="12dp"
-                android:textColor="@color/cardview_dark_background"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:layout_marginBottom="5dp" />
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="normal"
+                android:textSize="12dp"
+                />
+
+            <TextView
+                android:layout_below="@id/cep_dest"
+                android:id="@+id/valor"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:textSize="12dp"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/colorPrimaryDark"
+                />
 
             <ImageView
-            android:id="@+id/img3"
-            android:layout_width="100dp"
-            android:layout_height="25dp"
-            android:layout_marginTop="5dp"
-            android:layout_gravity="center_horizontal" />
-        <TextView
-            android:id="@+id/text6"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:textStyle="italic"
-            android:textSize="12dp"
-            android:textColor="@color/cardview_dark_background"
-            android:layout_marginTop="5dp"
-            android:layout_gravity="center_horizontal"
-            />
-        </LinearLayout>
+                android:layout_below="@id/valor"
+                android:id="@+id/imgSedex"
+                android:layout_width="60dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="5dp"
+                />
+
+            <TextView
+                android:id="@+id/sedex"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:textStyle="italic"
+                android:textSize="12dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/imgSedex"
+                android:layout_below="@id/valor"
+                android:layout_marginTop="12dp" />
+        </RelativeLayout>
     </LinearLayout>
 
 </android.support.v7.widget.CardView>

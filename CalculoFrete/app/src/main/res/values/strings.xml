@@ -1,4 +1,11 @@
 <resources>
-    <string name="app_name">CalculoFrete</string>
-    <string name="action_about">About</string>
+    <string name="app_name">Correios Frete</string>
+    <string name="Sobre">Sobre</string>
+    <string name="titulo_lista">Histórico de Cálculos</string>
+    <string name="menu_historico">Histórico</string>
+    <string name="titulo_main">Calcular Frete</string>
+    <string name="Pac">Pac</string>
+    <string name="Sedex">Sedex</string>
+    <string name="informacao">Informações</string>
+    <string name="remover">Deletar todos</string>
 </resources>
